@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">悦文</string>
+    <string name="text_username">用户名</string>
+    <string name="edit_login_hint">用户名</string>
+    <string name="text_password">登录密码</string>
+    <string name="edit_password_hint">登录密码</string>
+    <string name="login">登录</string>
+    <string name="newuser">新用户注册</string>
+
+    <string name="register_username">用户名</string>
+    <string name="register_password">登录密码</string>
+    <string name="register_confirmPassword">确认密码</string>
+    <string name="register_username_hint">用户名不能含有汉字、数字、英文字母以外的字符</string>
+    <string name="register_password_hint">不能含有数字、英文字母以外的字符</string>
+    <string name="register_confirmPassword_hint">请再次输入登录密码</string>
+    <string name="register">确认注册</string>
+
+    <string name="addImage_desc">添加</string>
+    <string name="book">分享中的图书</string>
+
+    <string name="artical_edit_menu_draft">保存草稿</string>
+    <string name="artival_edit_menu_release">发布文章</string>
+    <string name="artical_edit_title">点击编辑文章标题</string>
+    <string name="artical_edit_desc">编辑文章描述</string>
+    <string name="artical_edit_hint">在此区域编辑文章内容</string>
+
+
+</resources>

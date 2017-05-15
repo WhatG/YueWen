@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+   <LinearLayout
+       android:gravity="center_vertical"
+       android:background="@color/colorPrimaryDark"
+       android:orientation="horizontal"
+       android:layout_width="match_parent"
+       android:layout_height="40dp">
+      <android.support.design.widget.TabLayout
+          app:tabIndicatorHeight="2dp"
+          app:tabIndicatorColor="@color/white"
+          app:tabMode="fixed"
+          android:layout_weight="3"
+          android:id="@+id/artical_tabLayout"
+          android:background="@color/colorPrimaryDark"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"/>
+
+      <LinearLayout
+          android:gravity="end"
+          android:background="@color/colorPrimaryDark"
+          android:orientation="horizontal"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_height="match_parent">
+         <ImageView
+             android:id="@+id/art_bar_add"
+             android:src="@drawable/ic_add"
+             android:contentDescription="@string/addImage_desc"
+             android:layout_width="40dp"
+             android:layout_height="40dp"/>
+      </LinearLayout>
+
+   </LinearLayout>
+   <android.support.v4.view.ViewPager
+       android:id="@+id/artical_viewpager"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
+</LinearLayout>

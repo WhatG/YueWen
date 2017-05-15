@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:padding="@dimen/activityPadding"
+                android:background="@color/gray1"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:textSize="@dimen/middleTextSize"
+        android:textColor="#000000"
+        android:layout_below="@+id/register_input_password"
+        android:id="@+id/register_confirm"
+        android:text="@string/register_confirmPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_gravity="bottom"
+        android:text="@string/register"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bigButtonHeight"
+        android:id="@+id/register"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:maxLength="16"
+        android:padding="5dp"
+        android:textColorHint="@color/gray5"
+        android:background="@color/white"
+        android:textSize="@dimen/smallTextSize"
+        android:hint="@string/register_confirmPassword_hint"
+        android:id="@+id/register_input_confirm"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/middleBarHeight"
+        android:layout_below="@+id/register_confirm"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:textSize="@dimen/middleTextSize"
+        android:textColor="#000000"
+        android:text="@string/register_username"
+        android:id="@+id/register_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:textSize="@dimen/middleTextSize"
+        android:textColor="#000000"
+        android:id="@+id/register_password"
+        android:text="@string/register_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/register_input_name"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:maxLength="16"
+        android:padding="5dp"
+        android:textColorHint="@color/gray5"
+        android:background="@color/white"
+        android:textSize="@dimen/smallTextSize"
+        android:hint="@string/register_password_hint"
+        android:id="@+id/register_input_password"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/middleBarHeight"
+        android:layout_below="@+id/register_password"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:maxLength="10"
+        android:padding="5dp"
+        android:textColorHint="@color/gray5"
+        android:background="@color/white"
+        android:textSize="@dimen/smallTextSize"
+        android:hint="@string/register_username_hint"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/middleBarHeight"
+        android:id="@+id/register_input_name"
+        android:layout_below="@+id/register_username"
+        android:layout_alignParentStart="true"/>
+</RelativeLayout>

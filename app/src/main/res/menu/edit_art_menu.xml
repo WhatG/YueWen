@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".Activitys.EditActicalActivity">
+
+    <item android:id="@+id/artedit_menu_item_draft"
+          android:title="@string/artical_edit_menu_draft"/>
+    <item
+        android:title="@string/artival_edit_menu_release"
+        android:id="@+id/artedit_menu_item_release"/>
+</menu>

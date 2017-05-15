@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:background="@color/white"
+              android:gravity="center_horizontal"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/act_editart_toolbar"/>
+    <LinearLayout
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:maxLength="50"
+            android:textSize="@dimen/bigTextSize"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:padding="5dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/roundrect"
+            android:textColor="@color/black"
+            android:text="点击编辑标题"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/activity_artical_title"/>
+
+        <TextView
+            android:ellipsize="end"
+            android:maxLength="150"
+            android:padding="5dp"
+            android:background="@drawable/roundrect"
+            android:focusableInTouchMode="true"
+            android:textColor="@color/gray6"
+            android:maxLines="2"
+            android:text="编辑文章描述"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/activity_artical_desc"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/gray6"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+
+    <EditText
+        android:maxLength="10000"
+        android:padding="10dp"
+        android:gravity="top"
+        android:lineSpacingExtra="3dp"
+        android:textSize="@dimen/middleTextSize"
+        android:textColorHint="@color/gray5"
+        android:textColor="@color/gray7"
+        android:background="#FDFFF0"
+        android:hint="@string/artical_edit_hint"
+        android:id="@+id/activity_artical_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

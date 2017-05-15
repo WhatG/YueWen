@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal"
+        android:id="@+id/book_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/book_bar_title"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:text="@string/book"
+            android:textSize="@dimen/middleTextSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_alignParentEnd="true"
+            android:id="@+id/book_bar_add"
+            android:contentDescription="@string/addImage_desc"
+            android:src="@drawable/ic_add"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"/>
+        <ImageView
+            android:layout_toLeftOf="@id/book_bar_add"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_search"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+    </RelativeLayout>
+    <ListView
+        android:dividerHeight="4dp"
+        android:divider="@color/gray4"
+        android:id="@+id/book_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
