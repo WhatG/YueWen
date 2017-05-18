@@ -18,6 +18,8 @@
     <string name="addImage_desc">添加</string>
     <string name="book">分享中的图书</string>
 
+    <string name="artical_fragment_title">已分享的文章</string>
+
     <string name="artical_edit_menu_draft">保存草稿</string>
     <string name="artival_edit_menu_release">发布文章</string>
     <string name="artical_edit_title">点击编辑文章标题</string>

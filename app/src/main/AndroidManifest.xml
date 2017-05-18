@@ -10,9 +10,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activitys.LoginActivity">
-
-        </activity>
+        <activity
+            android:name=".Activitys.LoginActivity"/>
 
         <activity android:name=".Activitys.MainActivity"
                   android:theme="@style/AppTheme.NoActionBar">

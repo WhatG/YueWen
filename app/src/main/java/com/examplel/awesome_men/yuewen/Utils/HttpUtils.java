@@ -1,11 +1,14 @@
 package com.examplel.awesome_men.yuewen.Utils;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
+import com.examplel.awesome_men.yuewen.Activitys.LoginActivity;
 import com.examplel.awesome_men.yuewen.Threads.HttpGetThread;
+import com.examplel.awesome_men.yuewen.YueWenApplication;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,6 +40,7 @@ public class HttpUtils {
     public static final int FILE_NOT_FOUND = 0x03;
     public static final int FILE_UPLOAD_FAILED = 0x04;
     public static final int FILE_UPLOAD_SUCCESS = 0x05;
+
 
     private static HttpUtils instance = null;
     private HttpUtils(){
@@ -122,13 +126,15 @@ public class HttpUtils {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                JSONObject json = new JSONObject();
                 HttpURLConnection conn = null;
+                String postArg;
                 try{
+                    StringBuilder urlBuilder = new StringBuilder();
                     for(HashMap.Entry entry:arguments.entrySet()){
-                        json.put((String)entry.getKey(),entry.getValue());
+                        urlBuilder.append(entry.getKey()+"="+entry.getValue()+"&");
                     }
-                    String postData = json.toString();
+                    urlBuilder.deleteCharAt(urlBuilder.lastIndexOf("&"));
+
                     URL url = new URL(urlS);
                     conn = (HttpURLConnection) url.openConnection();
                     conn.setConnectTimeout(3000);
@@ -139,10 +145,9 @@ public class HttpUtils {
                     conn.connect();
 
                     OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
-                    out.write(postData);
+                    out.write(urlBuilder.toString());
                     out.flush();
                     out.close();
-
                     if(conn.getResponseCode()!=200){
                         if(handler!=null){
                             handler.sendEmptyMessage(HTTP_FAILED);
@@ -171,10 +176,6 @@ public class HttpUtils {
                 }catch (IOException io){
                     if (handler!=null){
                         handler.sendEmptyMessage(HTTP_FAILED);
-                    }
-                }catch (JSONException je){
-                    if(handler!=null){
-                        handler.sendEmptyMessage(AppUtils.JSON_FAILED);
                     }
                 }finally {
                     if(conn!=null){

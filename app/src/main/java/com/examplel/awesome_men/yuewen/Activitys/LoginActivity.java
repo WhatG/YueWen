@@ -1,6 +1,7 @@
 package com.examplel.awesome_men.yuewen.Activitys;
 
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +13,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.examplel.awesome_men.yuewen.R;
-import com.examplel.awesome_men.yuewen.Utils.AppUtils;
 import com.examplel.awesome_men.yuewen.Utils.HttpUtils;
 import com.examplel.awesome_men.yuewen.YueWenApplication;
 
@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         username_edit = (TextInputEditText) findViewById(R.id.edit_username);
         password_edit = (TextInputEditText) findViewById(R.id.edit_password);
         login = (Button) findViewById(R.id.login);
@@ -45,6 +44,7 @@ public class LoginActivity extends AppCompatActivity{
         handler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
+                login.setClickable(true);
                 switch(msg.what){
                     case HttpUtils.HTTP_FAILED:
                         Toast.makeText(LoginActivity.this,"无法连接到服务器",Toast.LENGTH_SHORT).show();
@@ -57,10 +57,9 @@ public class LoginActivity extends AppCompatActivity{
                             String resultMsg = dataJ.getString("msg");
                             switch (error){
                                 case 0:
-                                    YueWenApplication.currentUserId = ((JSONObject)(dataJ.getJSONArray("data").get(0))).getString("id");
+                                    YueWenApplication.currentUserId = ((JSONObject)(dataJ.getJSONArray("data").get(0))).getString("uid");
                                     Toast.makeText(LoginActivity.this,resultMsg,Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                                    startActivity(intent);
+                                    LoginActivity.this.setResult(RESULT_OK);
                                     LoginActivity.this.finish();
                                     break;
                                 default:
@@ -79,6 +78,7 @@ public class LoginActivity extends AppCompatActivity{
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String name = username_edit.getText().toString();
                 String password = password_edit.getText().toString();
                 if(name.isEmpty()){
@@ -94,6 +94,7 @@ public class LoginActivity extends AppCompatActivity{
                 map.put("name",name);
                 map.put("password", password);
 
+                login.setClickable(false);
                 HttpUtils utils = HttpUtils.getInstance();
                 utils.httpPost("http://192.168.1.117:8081/users/user.php",map,handler);
             }

@@ -14,6 +14,9 @@ import android.provider.MediaStore;
 import android.util.TypedValue;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by longer on 2017/4/13.
  */
@@ -27,8 +30,9 @@ public class AppUtils {
         }
         return instance;
     }
+    public static final int ACTIVITY_PICK_IMAGE = 9;
 
-    public static final int JSON_FAILED = 0x07;
+    public static final int JSON_FAILED = 7;
     //单位转换，像素转DP
     public static int getRawSize(Context context,float value) {
         Resources res = context.getResources();
@@ -37,6 +41,19 @@ public class AppUtils {
 
     public static void toast(Context context,String msg){
         Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
+    }
+
+
+    public static String stampToDate(String s){
+        String res;
+        if(s.equals("null")){
+            return "位置时间";
+        }
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
+        long lt = Long.valueOf(s)*1000;
+        Date date = new Date(lt);
+        res = simpleDateFormat.format(date);
+        return res;
     }
 
     @SuppressLint("NewApi")

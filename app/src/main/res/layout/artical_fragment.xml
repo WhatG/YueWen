@@ -10,34 +10,25 @@
        android:orientation="horizontal"
        android:layout_width="match_parent"
        android:layout_height="40dp">
-      <android.support.design.widget.TabLayout
-          app:tabIndicatorHeight="2dp"
-          app:tabIndicatorColor="@color/white"
-          app:tabMode="fixed"
-          android:layout_weight="3"
-          android:id="@+id/artical_tabLayout"
-          android:background="@color/colorPrimaryDark"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"/>
-
-      <LinearLayout
-          android:gravity="end"
-          android:background="@color/colorPrimaryDark"
-          android:orientation="horizontal"
+      <TextView
+          android:textColor="@color/white"
+          android:textSize="@dimen/middleTextSize"
+          android:paddingLeft="16dp"
+          android:gravity="center_vertical"
+          android:text="@string/artical_fragment_title"
           android:layout_weight="1"
           android:layout_width="0dp"
-          android:layout_height="match_parent">
-         <ImageView
-             android:id="@+id/art_bar_add"
-             android:src="@drawable/ic_add"
-             android:contentDescription="@string/addImage_desc"
-             android:layout_width="40dp"
-             android:layout_height="40dp"/>
-      </LinearLayout>
+          android:layout_height="match_parent"/>
+      <ImageView
+          android:id="@+id/art_bar_add"
+          android:src="@drawable/ic_add"
+          android:contentDescription="@string/addImage_desc"
+          android:layout_width="40dp"
+          android:layout_height="match_parent"/>
 
    </LinearLayout>
-   <android.support.v4.view.ViewPager
-       android:id="@+id/artical_viewpager"
+   <ListView
+       android:id="@+id/artical_fragment_list"
        android:layout_width="match_parent"
        android:layout_height="match_parent"/>
 </LinearLayout>
