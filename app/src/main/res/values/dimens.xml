@@ -12,4 +12,7 @@
     <dimen name="bigTextSize">18sp</dimen>
     <dimen name="middleTextSize">15sp</dimen>
     <dimen name="smallTextSize">13sp</dimen>
+    <dimen name="mis_image_size">120dp</dimen>
+    <dimen name="mis_space_size">2dp</dimen>
+    <dimen name="mis_folder_cover_size">72dp</dimen>
 </resources>

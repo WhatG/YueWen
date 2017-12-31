@@ -2,33 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
+              android:background="@color/gray5"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-   <LinearLayout
-       android:gravity="center_vertical"
+   <android.support.v7.widget.Toolbar
        android:background="@color/colorPrimaryDark"
-       android:orientation="horizontal"
+       android:id="@+id/artical_frag_toolbar"
        android:layout_width="match_parent"
-       android:layout_height="40dp">
-      <TextView
-          android:textColor="@color/white"
-          android:textSize="@dimen/middleTextSize"
-          android:paddingLeft="16dp"
-          android:gravity="center_vertical"
-          android:text="@string/artical_fragment_title"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"/>
-      <ImageView
-          android:id="@+id/art_bar_add"
-          android:src="@drawable/ic_add"
-          android:contentDescription="@string/addImage_desc"
-          android:layout_width="40dp"
-          android:layout_height="match_parent"/>
+       android:layout_height="40dp"/>
 
-   </LinearLayout>
    <ListView
+       android:background="@color/gray3"
        android:id="@+id/artical_fragment_list"
+       android:divider="@android:color/transparent"
+       android:dividerHeight="5dp"
        android:layout_width="match_parent"
        android:layout_height="match_parent"/>
 </LinearLayout>

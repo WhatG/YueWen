@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:background="@color/white"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/editbook_toolbar"
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+
+    <LinearLayout
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:textSize="@dimen/smallTextSize"
+            android:textColor="@color/gray7"
+            android:text="@string/uni_act_bname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <EditText
+            android:maxLength="16"
+            android:padding="5dp"
+            android:textColorHint="@color/gray5"
+            android:background="@color/white"
+            android:textSize="@dimen/middleTextSize"
+            android:hint="@string/uni_act_bnameh"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/middleBarHeight"
+            android:id="@+id/editbook_bname"
+            />
+
+        <TextView
+            android:textSize="@dimen/smallTextSize"
+            android:textColor="@color/gray7"
+            android:text="@string/uni_act_bauthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <EditText
+            android:maxLength="16"
+            android:padding="5dp"
+            android:textColorHint="@color/gray5"
+            android:background="@color/white"
+            android:textSize="@dimen/middleTextSize"
+            android:hint="@string/uni_act_bauthorh"
+            android:id="@+id/editbook_author"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/middleBarHeight"
+            />
+
+
+        <TextView
+            android:textSize="@dimen/smallTextSize"
+            android:textColor="@color/gray7"
+            android:text="@string/uni_act_brepub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:maxLength="20"
+            android:padding="5dp"
+            android:textColorHint="@color/gray5"
+            android:background="@color/white"
+            android:textSize="@dimen/middleTextSize"
+            android:hint="@string/uni_act_brepubh"
+            android:id="@+id/editbook_repub"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/middleBarHeight"
+            />
+        <EditText
+            android:id="@+id/editbook_desc"
+            android:maxLength="100"
+            android:gravity="start"
+            android:padding="5dp"
+            android:background="@color/gray1"
+            android:textSize="@dimen/smallTextSize"
+            android:hint="@string/uni_act_extra"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_marginRight="5dp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/colorPrimary"
+                android:id="@+id/editbook_addimg"
+                android:text="@string/uni_act_addimg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/editbook_imgsum"
+                android:paddingBottom="5dp"
+                android:gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:orientation="horizontal"
+        android:id="@+id/editbook_imgs"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/editbook_submit"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dp"
+        app:fabSize="auto"
+        app:elevation="6dp"
+        app:rippleColor="@color/white"
+        android:src="@drawable/ic_ok"
+        app:backgroundTint="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>

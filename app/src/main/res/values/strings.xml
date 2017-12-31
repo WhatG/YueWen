@@ -26,5 +26,39 @@
     <string name="artical_edit_desc">编辑文章描述</string>
     <string name="artical_edit_hint">在此区域编辑文章内容</string>
 
+    <string name="frag_mine_myartical">我的文章</string>
+    <string name="frag_mine_mydraft">我的草稿</string>
+    <string name="frag_mine_mybooks">我的书籍</string>
+    <string name="mine">我的</string>
+
+    <string name="uni_act_bname">书名</string>
+    <string name="uni_act_bnameh">在这里填写书名</string>
+    <string name="uni_act_bauthor">作者</string>
+    <string name="uni_act_bauthorh">填写作者名称</string>
+    <string name="uni_act_brepub">出版社</string>
+    <string name="uni_act_brepubh">填写出版社名称</string>
+    <string name="uni_act_extra">书籍介绍或者其他的信息</string>
+    <string name="uni_act_extrah">书籍介绍或者其他的信息</string>
+    <string name="uni_act_submit">分享该书籍</string>
+    <string name="uni_act_addimg">添加图片</string>
+
+
+    <string name="mis_folder_all">所有图片</string>
+    <string name="mis_preview">预览</string>
+    <string name="mis_msg_no_camera">未找相机</string>
+    <string name="mis_msg_amount_limit">限制选择图片数量</string>
+    <string name="mis_action_done">完成</string>
+    <string name="mis_action_button_string">%1$s(%2$d/%3$d)</string>
+    <string name="mis_photo_unit">张照片</string>
+    <string name="mis_tip_take_photo">拍照</string>
+    <string name="mis_error_image_not_exist">未找到图片</string>
+    <string name="mis_error_no_permission">没有权限</string>
+    <string name="mis_permission_dialog_title">拒绝权限申请</string>
+    <string name="mis_permission_dialog_ok">允许</string>
+    <string name="mis_permission_dialog_cancel">取消</string>
+    <string name="mis_permission_rationale">请求访问文件的权限</string>
+    <string name="mis_permission_rationale_write_storage">请求保存图片的权限</string>
+
+
 
 </resources>

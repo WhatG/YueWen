@@ -10,11 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.examplel.awesome_men.yuewen.R;
 import com.examplel.awesome_men.yuewen.Utils.AppUtils;
 import com.examplel.awesome_men.yuewen.Utils.HttpUtils;
+import com.examplel.awesome_men.yuewen.YueWenApplication;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +34,8 @@ import static com.examplel.awesome_men.yuewen.Utils.HttpUtils.HTTP_SUCCESS;
 
 public class RegisterActivity extends AppCompatActivity{
     Handler handler;
+    ImageView usericon;
+    String userIcon;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +73,15 @@ public class RegisterActivity extends AppCompatActivity{
             }
         };
 
+        usericon = (ImageView)findViewById(R.id.usericon);
+        usericon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterActivity.this, UserIconPickAct.class);
+                startActivityForResult(intent,AppUtils.ACTIVITY_PICK_IMAGE);
+            }
+        });
+
         Button register = (Button)findViewById(R.id.register);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,10 +107,26 @@ public class RegisterActivity extends AppCompatActivity{
                 map.put("method","register");
                 map.put("name",name);
                 map.put("password",pwc);
+                if(userIcon!=null){
+                    map.put("icon",userIcon);
+                }
 
                 HttpUtils utils = HttpUtils.getInstance();
-                utils.httpPost("http://192.168.1.117:8081/users/user.php",map,handler);
+                utils.httpPost(YueWenApplication.USER_SERVER_PATH,map,handler);
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if(requestCode==AppUtils.ACTIVITY_PICK_IMAGE) {
+                String uri = data.getStringExtra("url");
+                Picasso.with(this).load(uri).into(usericon);
+                userIcon = uri;
+            }
+
+        }
     }
 }

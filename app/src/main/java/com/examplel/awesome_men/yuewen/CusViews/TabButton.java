@@ -19,12 +19,11 @@ import com.examplel.awesome_men.yuewen.R;
 
 public class TabButton extends LinearLayout{
     private String tabName = "书籍";
-    private int imagePressId = R.drawable.books;
-    private int imageUnPressId = R.drawable.books;
+    private int imagePressId = R.drawable.ic_book;
+    private int imageUnPressId = R.drawable.ic_book;
     private ImageView image;
     private TextView textview;
     private Context context;
-    private int textcolor = ResourcesCompat.getColor(getResources(),R.color.gray6,null);
     private OnTabClickListener listener;
 
     private  int indexInActivity = -1;
@@ -67,7 +66,7 @@ public class TabButton extends LinearLayout{
         textview.setLayoutParams(lp1);
         textview.setText(tabName);
         textview.setTextSize(TypedValue.COMPLEX_UNIT_SP,11);
-        textview.setTextColor(ResourcesCompat.getColor(getResources(),R.color.gray6,null));
+        textview.setTextColor(0xFF000000);
         this.addView(image);
         this.addView(textview);
         this.invalidate();
@@ -84,13 +83,13 @@ public class TabButton extends LinearLayout{
 
 
     public void clearSelected(){
-        textview.setTextColor(ResourcesCompat.getColor(getResources(),R.color.gray6,null));
+        textview.setTextColor(0xFF000000);
         this.image.setImageDrawable(ResourcesCompat.getDrawable(getResources(),imageUnPressId,null));
         this.invalidate();
     }
 
     public void setSelected(){
-        textview.setTextColor(ResourcesCompat.getColor(getResources(),R.color.tabColor_press,null));
+        textview.setTextColor(0xFF3F51B5);
         image.setImageDrawable(ResourcesCompat.getDrawable(getResources(),imagePressId,null));
         textview.invalidate();
     }

@@ -7,12 +7,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.JsonReader;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.examplel.awesome_men.yuewen.Activitys.ArticalDetailActivity;
 import com.examplel.awesome_men.yuewen.Activitys.EditActicalActivity;
@@ -27,11 +28,11 @@ import com.examplel.awesome_men.yuewen.YueWenApplication;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -41,20 +42,25 @@ import static android.app.Activity.RESULT_OK;
  */
 
 public class ArticalFragment extends Fragment {
-    List<Artical> articals = new ArrayList<>();
+    List<Artical> articals ;
     ArticalListAdapter adapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adapter = new ArticalListAdapter(getActivity(),articals);
+        if(articals==null){
+           articals = new ArrayList<>();
+            HashMap<String,Object> map = new HashMap<>();
+            map.put("method","getarticallist");
+            HttpUtils.getInstance().httpPost(YueWenApplication.ARTICAL_SERVER_PATH,map,new ArticalHandler());
+        }
+        if(adapter==null){
+            adapter = new ArticalListAdapter(getActivity(),articals);
+        }
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        HashMap<String,Object> map = new HashMap<>();
-        map.put("method","getarticallist");
-        HttpUtils.getInstance().httpPost(YueWenApplication.ServerAddr+"/articals/artical.php",map,new ArticalHandler());
 
     }
 
@@ -68,25 +74,29 @@ public class ArticalFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Artical.
                 Intent intent = new Intent(getActivity(), ArticalDetailActivity.class);
-                intent.putExtra("title",)
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("artical",articals.get(position));
+                intent.putExtras(bundle);
                 startActivity(intent);
 
             }
         });
-        View add = view.findViewById(R.id.art_bar_add);
-        add.setOnClickListener(new View.OnClickListener() {
+        TextView textView = new TextView(getActivity());
+        textView.setTextSize(AppUtils.getRawSize(getActivity(),35));
+        textView.setTextColor(0xffb5b5b5);
+        textView.setText("空");
+        listView.setEmptyView(textView);
+
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.artical_frag_toolbar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
+        toolbar.setTitle("已分享的文章");
+        toolbar.setNavigationIcon(R.drawable.add);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (YueWenApplication.currentUserId == null) {
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-                    startActivityForResult(intent,EditActicalActivity.TO_LOGIN);
-                }
-                else{
-                    Intent intent = new Intent(getActivity(), EditActicalActivity.class);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(getActivity(), EditActicalActivity.class);
+                startActivityForResult(intent,0x567);
             }
         });
         return view;
@@ -104,11 +114,12 @@ public class ArticalFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            if(requestCode == EditActicalActivity.TO_LOGIN){
-                Intent intent = new Intent(getActivity(),EditActicalActivity.class);
-                startActivity(intent);
-            }
+        if (requestCode==0x567&&resultCode == RESULT_OK) {
+            articals.clear();
+            HashMap<String,Object> map = new HashMap<>();
+            map.put("method","getarticallist");
+            HttpUtils.getInstance().httpPost(YueWenApplication.ARTICAL_SERVER_PATH,map,new ArticalHandler());
+            adapter.notifyDataSetChanged();
         }
     }
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="86dp"
+    android:layout_height="76dp"
+    android:layout_gravity="center"
+    android:background="@drawable/progress_custom_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="10dp">
+
+    <ImageView
+        android:layout_marginTop="3dp"
+        android:id="@+id/spinnerImageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@anim/spinner" />
+
+    <TextView
+        android:maxLength="5"
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="正在上传"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>

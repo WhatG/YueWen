@@ -30,6 +30,7 @@ public class Artical implements Parcelable{
         }
         try{
             desc = jsonContent.getString("adscp");
+            desc = desc.equals("null")||desc.equals("")?null:desc;
         }catch (JSONException je){
             je.printStackTrace();
         }
@@ -126,7 +127,11 @@ public class Artical implements Parcelable{
         }
     };
 
-    public Artical(Parcel source){
+    public Artical(){
+
+    }
+
+    private Artical(Parcel source){
         this.id = source.readString();
         this.title = source.readString();
         this.desc = source.readString();
@@ -136,6 +141,4 @@ public class Artical implements Parcelable{
         this.time = source.readString();
         this.content = source.readString();
     }
-
-
 }

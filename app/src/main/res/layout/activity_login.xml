@@ -6,14 +6,17 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <com.examplel.awesome_men.yuewen.CusViews.CircleImage
-        android:id="@+id/usericon"
+    <ImageView
+        android:padding="5dp"
+        android:background="@drawable/roundreact_white"
+        android:id="@+id/login_usericon"
         android:layout_margin="16dp"
-        android:layout_width="60dp"
-        android:layout_height="60dp"/>
+        android:layout_width="80dp"
+        android:layout_height="80dp"/>
 
 
     <android.support.design.widget.TextInputEditText
+        android:layout_marginBottom="1dp"
         android:textSize="@dimen/smallTextSize"
         android:textColorHint="@color/gray5"
         android:textColor="@color/black"

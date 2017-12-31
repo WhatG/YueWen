@@ -26,6 +26,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.UUID;
@@ -122,12 +123,12 @@ public class HttpUtils {
         }).start();
     }
 
+    //post请求
     public void httpPost(final String urlS,final HashMap<String,Object> arguments,@Nullable final Handler handler){
         new Thread(new Runnable() {
             @Override
             public void run() {
                 HttpURLConnection conn = null;
-                String postArg;
                 try{
                     StringBuilder urlBuilder = new StringBuilder();
                     for(HashMap.Entry entry:arguments.entrySet()){
@@ -148,6 +149,7 @@ public class HttpUtils {
                     out.write(urlBuilder.toString());
                     out.flush();
                     out.close();
+                    int code = conn.getResponseCode();
                     if(conn.getResponseCode()!=200){
                         if(handler!=null){
                             handler.sendEmptyMessage(HTTP_FAILED);
@@ -186,22 +188,18 @@ public class HttpUtils {
         }).start();
     }
 
-    public void uploadFile(final String urls,final String filePath,@Nullable final Handler handler) {
+    //上传多张图片
+    public void uploadFile(final String urls, final ArrayList<String> filePaths, @Nullable final Handler handler) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 final String PREFIX = "--",LINE_END = "\r\n";
                 final String BOUNDARY = UUID.randomUUID().toString(); // 边界标识
                 final String contentType = "multipart/form-data";
-                final String dataKey = "\"uploadfile\"";
-                File file = new File(filePath);
-                if(!file.exists()){
-                    if(handler!=null){
-                        handler.sendEmptyMessage(FILE_NOT_FOUND);
-                    }
-                    return;
-                }
                 try{
+
+
+
                     URL url = new URL(urls);
                     HttpURLConnection conn = (HttpURLConnection)url.openConnection();
                     conn.setConnectTimeout(5*1000);
@@ -216,27 +214,53 @@ public class HttpUtils {
                     conn.connect();
 
                     DataOutputStream dos = new DataOutputStream( conn.getOutputStream());
-                    StringBuffer sb = new StringBuffer();
-                    sb.append(PREFIX);
-                    sb.append(BOUNDARY);
-                    sb.append(LINE_END);
-                    sb.append("Content-Disposition: form-data; name="+dataKey+"; filename=\""+file.getName()+"\""+LINE_END);
-                    sb.append("Content-Type: "+getFileType(file.getName())+"; charset=utf-8"+LINE_END);
-                    sb.append(LINE_END);
-                    dos.write(sb.toString().getBytes());
 
-                    InputStream is = new FileInputStream(file);
-                    byte[] bytes = new byte[1024];
-                    int len = 0;
-                    while((len=is.read(bytes))!=-1)
-                    {
-                        dos.write(bytes, 0, len);
+                    StringBuffer desc =new StringBuffer();
+                    desc.append(PREFIX);
+                    desc.append(BOUNDARY);
+                    desc.append(LINE_END);
+                    desc.append("Content-Disposition: form-data; name=\"filecount\""+LINE_END);
+                    desc.append("Content-Type:text/plain; charset=utf-8"+LINE_END);
+                    desc.append(LINE_END);
+                    desc.append(filePaths.size());
+                    desc.append(LINE_END);
+                    desc.append(PREFIX+BOUNDARY+PREFIX+LINE_END);
+                    dos.write(desc.toString().getBytes());
+
+
+
+                    for(int i = 0;i<filePaths.size();i++){
+                        final String dataKey = "\"file"+i+"\"";
+                        File file = new File(filePaths.get(i));
+                        if(!file.exists()){
+                            if(handler!=null){
+                                handler.sendEmptyMessage(FILE_NOT_FOUND);
+                            }
+                            return;
+                        }
+
+                        StringBuffer sb = new StringBuffer();
+                        sb.append(PREFIX);
+                        sb.append(BOUNDARY);
+                        sb.append(LINE_END);
+                        sb.append("Content-Disposition: form-data; name="+dataKey+"; filename=\""+file.getName()+"\""+LINE_END);
+                        sb.append("Content-Type: "+getFileType(file.getName())+"; charset=utf-8"+LINE_END);
+                        sb.append(LINE_END);
+                        dos.write(sb.toString().getBytes());
+
+                        InputStream is = new FileInputStream(file);
+                        byte[] bytes = new byte[1024];
+                        int len = 0;
+                        while((len=is.read(bytes))!=-1)
+                        {
+                            dos.write(bytes, 0, len);
+                        }
+                        is.close();
+                        dos.write(LINE_END.getBytes());
+                        byte[] end_data = (PREFIX+BOUNDARY+PREFIX+LINE_END).getBytes();
+                        dos.write(end_data);
                     }
-                    is.close();
-                    dos.write(LINE_END.getBytes());
-                    byte[] end_data = (PREFIX+BOUNDARY+PREFIX+LINE_END).getBytes();
 
-                    dos.write(end_data);
                     dos.flush();
                     dos.close();
 
@@ -259,7 +283,10 @@ public class HttpUtils {
                     String result = builder.toString();
 
                     if(handler!=null){
-                        handler.sendEmptyMessage(FILE_UPLOAD_SUCCESS);
+                        Message msg = Message.obtain();
+                        msg.what = FILE_UPLOAD_SUCCESS;
+                        msg.obj = result;
+                        handler.sendMessage(msg);
                     }
 
 

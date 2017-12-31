@@ -20,7 +20,7 @@
 
 
     <LinearLayout
-        android:background="@color/gray2"
+        android:background="@drawable/item_top_line"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center_vertical">

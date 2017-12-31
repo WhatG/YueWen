@@ -2,7 +2,9 @@
 <manifest package="com.examplel.awesome_men.yuewen"
           xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:name=".YueWenApplication"
         android:allowBackup="true"
@@ -11,20 +13,83 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activitys.LoginActivity"/>
-
-        <activity android:name=".Activitys.MainActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
+            android:name=".Activitys.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
+        <activity android:name=".Activitys.ConversationListActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateHidden|adjustResize"
+                  android:theme="@style/AppTheme.NoActionBar"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.examplel.awesome_men.yuewen"
+                    android:pathPrefix="/conversationlist"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Activitys.MainActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
         <activity android:name=".Activitys.RegisterActivity"
                   android:theme="@style/AppTheme"/>
+
         <activity android:name=".Activitys.EditActicalActivity"
+                  android:windowSoftInputMode = "stateHidden"
                   android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Activitys.ArticalDetailActivity"
+                  android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".Activitys.MyDataDisplay"
+                  android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".Activitys.UniversalActivity"
+                  android:windowSoftInputMode = "stateHidden"
+                  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MultiImageSlector.MultiImageSelectorActivity"/>
+        <activity android:theme="@style/AppTheme.NoActionBar"
+                  android:name=".ImageZoom.CheckImageActivity"/>
+        <activity android:name=".ImageZoom.SingleImageCheckAct"
+                  android:theme="@style/AppTheme.NoActionBar.Dark"/>
+        <activity
+            android:name=".Activitys.ConversationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.examplel.awesome_men.yuewen"
+                    android:pathPrefix="/conversation/"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activitys.UserIconPickAct"/>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities=".FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/rc_file_path" />
+        </provider>
     </application>
+
 
 </manifest>

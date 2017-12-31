@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.examplel.awesome_men.yuewen.MultiImageSlector.view.SquareFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#343535"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/mis_asy"
+            android:layout_gravity="center"
+        />
+        <TextView
+            android:layout_gravity="bottom"
+            android:text="@string/mis_tip_take_photo"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+        />
+
+    </LinearLayout>
+</com.examplel.awesome_men.yuewen.MultiImageSlector.view.SquareFrameLayout>

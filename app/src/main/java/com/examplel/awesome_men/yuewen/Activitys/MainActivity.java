@@ -1,9 +1,13 @@
 package com.examplel.awesome_men.yuewen.Activitys;
 
+import android.net.Uri;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.examplel.awesome_men.yuewen.Adapters.ConversationListAdapterEx;
 import com.examplel.awesome_men.yuewen.CusViews.TabButton;
 import com.examplel.awesome_men.yuewen.Fragments.ArticalFragment;
 import com.examplel.awesome_men.yuewen.Fragments.BookFragment;
@@ -11,9 +15,14 @@ import com.examplel.awesome_men.yuewen.Fragments.ContactFragment;
 import com.examplel.awesome_men.yuewen.Fragments.MineFragment;
 import com.examplel.awesome_men.yuewen.R;
 
+import io.rong.imkit.RongContext;
+import io.rong.imkit.fragment.ConversationListFragment;
+import io.rong.imlib.model.Conversation;
+
 public class MainActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
     private int currentFragment =0;
+    private Conversation.ConversationType[] mConversationsTypes = null;
     int[] buttonIndexs = {
             R.id.tab1,
             R.id.tab2,
@@ -24,13 +33,13 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.ic_artical,
             R.drawable.ic_book,
             R.drawable.ic_message,
-            R.drawable.ic_person1
+            R.drawable.ic_person
     };
     int[] buttonImgPress = {
-            R.drawable.articalp,
-            R.drawable.booksp,
-            R.drawable.personsp,
-            R.drawable.mep
+            R.drawable.ic_artical_s,
+            R.drawable.ic_book_s,
+            R.drawable.ic_message_s,
+            R.drawable.ic_person_s
     };
     private String[] buttonNames = {"文章","书籍","联系","我"};
     private TabButton[] bottomButtons = new TabButton[4];
@@ -39,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private ArticalFragment af;
     private BookFragment bf;
     private ContactFragment cf;
+//    private ConversationListFragment cf;
     private MineFragment mf;
 
     private TabButton.OnTabClickListener bottomTabListener;
@@ -62,44 +72,57 @@ public class MainActivity extends AppCompatActivity {
 
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction fts = fm.beginTransaction();
+                hideFragments(fts);
 
                 switch(index){
                     case 0:
                         if(af==null){
                             af = new ArticalFragment();
+                            fts.add(R.id.home_content,af);
                         }
-                        fts.replace(R.id.home_content,af);
-                        fts.commit();
+                       else{
+                            fts.show(af);
+                        }
                         break;
                     case 1:
                         if(bf==null){
                             bf = new BookFragment();
+                            fts.add(R.id.home_content,bf);
                         }
-                        fts.replace(R.id.home_content,bf);
-                        fts.commit();
+                        else{
+                            fts.show(bf);
+                        }
                         break;
                     case 2:
                         if(cf==null){
                             cf = new ContactFragment();
+//                            cf = new ConversationListFragment();
+                            //cf = initConversationList();
+                            fts.add(R.id.home_content,cf);
                         }
-                        fts.replace(R.id.home_content,cf);
-                        fts.commit();
+                       else{
+                            fts.show(cf);
+                        }
                         break;
                     case 3:
                         if(mf==null){
                             mf = new MineFragment();
+                            fts.add(R.id.home_content,mf);
                         }
-                        fts.replace(R.id.home_content,mf);
-                        fts.commit();
+                       else{
+                            fts.show(mf);
+                        }
                         break;
                 }
+                fts.commit();
                 currentFragment = index;
             }
         };
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fts = fm.beginTransaction();
-        fts.replace(R.id.home_content,new ArticalFragment());
+        af = new ArticalFragment();
+        fts.add(R.id.home_content,af);
         fts.commit();
         initTab();
     }
@@ -116,4 +139,56 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    public void hideFragments(FragmentTransaction ft) {
+        if (af != null)
+            ft.hide(af);
+        if (bf != null)
+            ft.hide(bf);
+        if (cf != null)
+            ft.hide(cf);
+        if (mf != null)
+            ft.hide(mf);
+    }
+    private ConversationListFragment mConversationListFragment = null;
+
+//    private ConversationListFragment initConversationList() {
+//        if (cf == null) {
+//             cf = new ConversationListFragment();
+//            cf.setAdapter(new ConversationListAdapterEx(RongContext.getInstance()));
+////            if (isDebug) {
+////
+////
+////            } else {
+////                uri = Uri.parse("rong://" + getApplicationInfo().packageName).buildUpon()
+////                        .appendPath("conversationlist")
+////                        .appendQueryParameter(Conversation.ConversationType.PRIVATE.getName(), "false") //设置私聊会话是否聚合显示
+////                        .appendQueryParameter(Conversation.ConversationType.GROUP.getName(), "false")//群组
+////                        .appendQueryParameter(Conversation.ConversationType.PUBLIC_SERVICE.getName(), "false")//公共服务号
+////                        .appendQueryParameter(Conversation.ConversationType.APP_PUBLIC_SERVICE.getName(), "false")//订阅号
+////                        .appendQueryParameter(Conversation.ConversationType.SYSTEM.getName(), "true")//系统
+////                        .build();
+////                mConversationsTypes = new Conversation.ConversationType[]{Conversation.ConversationType.PRIVATE,
+////                        Conversation.ConversationType.GROUP,
+////                        Conversation.ConversationType.PUBLIC_SERVICE,
+////                        Conversation.ConversationType.APP_PUBLIC_SERVICE,
+////                        Conversation.ConversationType.SYSTEM
+////                };
+////            }
+//            Uri uri = Uri.parse("rong://" + getApplicationInfo().packageName).buildUpon()
+//                    .appendPath("conversationlist")
+//                    .appendQueryParameter(Conversation.ConversationType.PRIVATE.getName(), "false") //设置私聊会话是否聚合显示
+//                    .appendQueryParameter(Conversation.ConversationType.GROUP.getName(), "false")//群组
+//                    .appendQueryParameter(Conversation.ConversationType.PUBLIC_SERVICE.getName(), "false")//公共服务号
+//                    .appendQueryParameter(Conversation.ConversationType.APP_PUBLIC_SERVICE.getName(), "false")//订阅号
+//                    .appendQueryParameter(Conversation.ConversationType.SYSTEM.getName(), "true")//系统
+//                    .appendQueryParameter(Conversation.ConversationType.DISCUSSION.getName(), "false")
+//                    .build();
+//            cf.setUri(uri);
+////            cf = listFragment;
+////            return listFragment;
+//            return cf;
+//        } else {
+//            return cf;
+//        }
+//    }
 }

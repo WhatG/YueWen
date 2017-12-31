@@ -4,19 +4,27 @@
               android:background="@color/gray1"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/mine_toolbar"
+
+    <TextView
+        android:textSize="@dimen/bigTextSize"
+        android:padding="10dp"
+        android:gravity="left|center_vertical"
+        android:textColor="@color/white"
+        android:text="个人中心"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
-    </android.support.v7.widget.Toolbar>
+        android:background="@color/colorPrimary"
+        android:layout_height="40dp"
+        android:id="@+id/textView5"/>
 
     <LinearLayout
-        android:background="@color/black"
+        android:background="@color/white"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="100dp">
-        <com.examplel.awesome_men.yuewen.CusViews.CircleImage
+        <ImageView
+            android:background="@drawable/roundrect"
             android:id="@+id/mine_usericon"
+            android:padding="5dp"
             android:layout_margin="10dp"
             android:layout_width="80dp"
             android:layout_height="80dp"/>
@@ -26,9 +34,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
+                android:id="@+id/mine_username"
                 android:textColor="@color/black"
                 android:layout_marginBottom="10dp"
-                android:typeface="serif"
                 android:textSize="@dimen/bigTextSize"
                 android:text="longer"
                 android:layout_width="wrap_content"
@@ -42,15 +50,75 @@
             <TextView
                 android:textColor="@color/gray6"
                 android:gravity="bottom"
-                android:text="文章:15   待取书籍:6   被关注:163"
+                android:text="文章:15   待取书籍:6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:background="@color/white"
+    <LinearLayout
+        android:layout_marginBottom="1dp"
+        android:id="@+id/mine_myartical"
+        android:background="@drawable/item_backcolor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="40dp">
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:padding="10dp"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:text="@string/frag_mine_myartical"
+            android:layout_height="match_parent"
+            android:id="@+id/textView4"/>
+
+        <ImageView
+            android:src="@drawable/forward"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginBottom="1dp"
+        android:id="@+id/mine_mydraft"
+        android:background="@drawable/item_backcolor"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:padding="10dp"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:text="@string/frag_mine_mydraft"
+            android:layout_height="match_parent"
+            android:id="@+id/textView3"/>
+        <ImageView
+            android:src="@drawable/forward"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/mine_mybook"
+        android:background="@drawable/item_backcolor"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:padding="10dp"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:text="我的图书"
+            android:layout_height="match_parent"
+            android:id="@+id/textView6"/>
+        <ImageView
+            android:src="@drawable/forward"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 
 </LinearLayout>

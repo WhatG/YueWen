@@ -1,9 +1,12 @@
 package com.examplel.awesome_men.yuewen.Utils;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
@@ -11,6 +14,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.widget.Toast;
 
@@ -55,6 +59,29 @@ public class AppUtils {
         res = simpleDateFormat.format(date);
         return res;
     }
+
+    public static boolean hasPermission(Context context){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
+            // Permission was added in API Level 16
+            return ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED;
+        }
+        return true;
+    }
+
+
+    private static boolean hasStoragePermission(Context context){
+        if(true/*Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN*/){
+            // Permission was added in API Level 16
+            return (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) &&
+                    (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                            == PackageManager.PERMISSION_GRANTED);
+        }
+        return true;
+    }
+
+
 
     @SuppressLint("NewApi")
     public static String getPath(final Context context, final Uri uri) {
@@ -115,6 +142,7 @@ public class AppUtils {
         final String[] projection = { column };
 
         try {
+
             cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
                     null);
             if (cursor != null && cursor.moveToFirst()) {
